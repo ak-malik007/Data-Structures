@@ -139,10 +139,6 @@ public class SingleLinkedList {
 
 	}
 
-	public void swapTwoNodes() {
-
-	}
-
 	public void printMid() {
 		Node slow_ptr = head;
 		Node fast_ptr = head;
