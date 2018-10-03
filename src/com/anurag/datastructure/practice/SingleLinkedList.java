@@ -56,13 +56,19 @@ public class SingleLinkedList {
 	}
 
 	public void insertionAtAnyPos(int pos, int data) {
+		int count = 1;
 		Node insert = new Node();
-
-		if (size() == 0) {
-
-		} else if (size() == 1) {
-
+		if (pos > size()) {
+			System.out.println("Invalid position");
 		} else {
+			Node node = head;
+			while (count < pos) {
+				node = node.getNextNode();
+				count++;
+			}
+			insert.setData(data);
+			insert.setNextNode(node.getNextNode());
+			node.setNextNode(insert);
 
 		}
 	}
@@ -89,7 +95,7 @@ public class SingleLinkedList {
 			System.out.println("Node deleted");
 		} else {
 			Node node = head;
-			while (node.getNextNode().getNextNode()!= null) {
+			while (node.getNextNode().getNextNode() != null) {
 				node = node.getNextNode();
 			}
 			node.setNextNode(null);
@@ -100,6 +106,20 @@ public class SingleLinkedList {
 	}
 
 	public void deletionAtAnyPos(int pos) {
+		int count = 1;
+		Node node = head;
+		System.out.println("size of the list is: " + size());
+		if (pos == size() - 1) {
+			deletionAtEnd();
+		} else if (pos > size()) {
+			System.out.println("Invalid position");
+		} else {
+			while (count < pos) {
+				node = node.getNextNode();
+				count++;
+			}
+			node.setNextNode(node.getNextNode().getNextNode());
+		}
 
 	}
 
@@ -116,12 +136,23 @@ public class SingleLinkedList {
 		}
 		head = prev;
 		tail = null;
-		
-		
+
 	}
 
 	public void swapTwoNodes() {
 
+	}
+
+	public void printMid() {
+		Node slow_ptr = head;
+		Node fast_ptr = head;
+		if (head != null) {
+			while (fast_ptr != null && fast_ptr.getNextNode() != null) {
+				slow_ptr = slow_ptr.getNextNode();
+				fast_ptr = fast_ptr.getNextNode().getNextNode();
+			}
+			System.out.println("Mid node has value : " + slow_ptr.getData());
+		}
 	}
 
 	public void displayList() {
@@ -158,20 +189,26 @@ public class SingleLinkedList {
 	public static void main(String[] args) {
 
 		SingleLinkedList sll = new SingleLinkedList();
-		sll.insertionAtStart(1);
 		sll.insertionAtStart(0);
-		sll.insertionAtStart(-1);
+		sll.insertionAtEnd(1);
 		sll.insertionAtEnd(2);
 		sll.insertionAtEnd(3);
 		sll.insertionAtEnd(4);
-		sll.displayList();
-		System.out.println();
-		System.out.println(sll.size());
-		//sll.reverseList();
-		sll.deletionAtEnd();
-		sll.displayList();
-		System.out.println();
-		System.out.println(sll.size());
+		sll.insertionAtEnd(5);
+		sll.insertionAtEnd(6);
+		sll.insertionAtEnd(7);
+		sll.printMid();
+
+		// sll.displayList();
+		// sll.insertionAtAnyPos(5, 5);
+		// sll.deletionAtAnyPos(2);
+		// sll.displayList();
+		// sll.displayList();
+		// System.out.println(sll.size());
+		// sll.reverseList();
+		// sll.deletionAtEnd();
+		// sll.displayList();
+		// System.out.println(sll.size());
 
 	}
 }

@@ -85,6 +85,7 @@ public class SingleLL {
 		}
 		
 	}
+	
 	public void reverse() { 
 		
 		System.out.println("Reversing the Link List");
@@ -100,6 +101,7 @@ public class SingleLL {
         head = prev; //re-assign the head node
         
     } 
+	
 	public void show()
 	{
 		Node node=head;
