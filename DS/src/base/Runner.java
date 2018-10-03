@@ -9,9 +9,15 @@ public class Runner {
 		DoubleLL dlist=new DoubleLL();
 		
 		list.insert(2);
-		
-		list.insert(5);
 		list.insert(6);
+		list.insert(5);
+		list.insert(7);
+		list.insert(9);
+		list.show();
+	//list.head=list.mergeSort(list.head);
+	//list.show();
+		list.middle();
+		/*
 		list.show();
 		
 		list.insertAtStart(8);
@@ -24,6 +30,8 @@ public class Runner {
 		list.reverse();
 		list.show();
 		list.middle();
+		boolean result=list.search(list.head, 8);
+		System.out.println(result);
 		dlist.insertAtStart(1);
 		dlist.insertAtStart(2);
 		dlist.insertAtStart(6);
@@ -33,7 +41,7 @@ public class Runner {
 		dlist.show();
 		dlist.delete(6);
 		dlist.show();
-		dlist.reverseShow();
+		dlist.reverseShow();*/
 	}
 
 }

@@ -133,7 +133,7 @@ public class SingleLL {
 	public void middle()
 	{
 		
-		Node slow=head,fast=head;
+		Node slow=head,fast=head.getNextNode();
 		if (head!=null) {
 			while(fast.getNextNode()!=null) {
 				if(fast.getNextNode().getNextNode()!=null)
@@ -147,4 +147,80 @@ public class SingleLL {
 		
 		
 	}
+	//Geeks for Geeks implementation
+	public Node getmiddle(Node head) {
+	 
+	        Node fastptr = head.getNextNode(); 
+	        Node slowptr = head; 
+	          
+	        // Move fastptr by two and slow ptr by one 
+	        // Finally slowptr will point to middle node 
+	        while (fastptr != null) 
+	        { 
+	            fastptr = fastptr.getNextNode(); 
+	            if(fastptr!=null) 
+	            { 
+	                slowptr = slowptr.getNextNode(); 
+	                fastptr=fastptr.getNextNode(); 
+	            } 
+	        } 
+	     return slowptr;
+	}
+	
+	public boolean search(Node node,int x) {
+		if(node==null) {	
+		return false;
+		}
+		if (node.getData()==x) {
+		return true;
+		}
+		
+		return search(node.getNextNode(), x); 
+	}
+	public Node sortedMerge(Node a, Node b) {
+		Node result=null;
+		/* Base cases */
+        if (a == null) 
+            return b; 
+        if (b == null) 
+            return a; 
+  
+        /* Pick either a or b, and recur */
+        if (a.getData() <= b.getData())  
+        { 
+            result = a; 
+            result.setNextNode(sortedMerge(a.getNextNode(), b));
+        }  
+        else 
+        { 
+            result = b; 
+            result.setNextNode(sortedMerge(a, b.getNextNode())); 
+        } 
+        return result; 
+	}
+	Node mergeSort(Node h)  
+    { 
+        // Base case : if head is null 
+        if (h == null || h.getNextNode() == null) 
+        { 
+            return h; 
+        } 
+  
+        // get the middle of the list 
+        Node middle = getmiddle(h); 
+        Node nextofmiddle = middle.getNextNode(); 
+  
+        // set the next of middle node to null 
+        middle.setNextNode(null); 
+  
+        // Apply mergeSort on left list 
+        Node left = mergeSort(h); 
+  
+        // Apply mergeSort on right list 
+        Node right = mergeSort(nextofmiddle); 
+  
+        // Merge the left and right lists 
+        Node sortedlist = sortedMerge(left, right); 
+        return sortedlist; 
+    } 
 }
